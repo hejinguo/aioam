@@ -12,5 +12,3 @@ App({
     hasLogin: false
   }
 })
-
-
