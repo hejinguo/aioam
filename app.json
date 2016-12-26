@@ -1,5 +1,7 @@
 {
   "pages":[
+    "pages/identity/identity",
+    "pages/inter/inter",
     "pages/index/index",
     "pages/logs/logs"
   ],
