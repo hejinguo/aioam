@@ -1,10 +1,20 @@
 //app.js
 App({
   onLaunch: function () {
-    //调用API从本地缓存中获取数据
-    // var logs = wx.getStorageSync('logs') || []
-    // logs.unshift(Date.now())
-    // wx.setStorageSync('logs', logs)
+    console.log('app onLaunch');
+    var loginToken = wx.getStorageSync('LOGIN_TOKEN')||'';
+    console.log("loginToken="+loginToken);
+    if(loginToken){
+      wx.redirectTo({
+        url: 'pages/inter/inter'
+      });
+      // wx.navigateTo({
+      //   url: 'pages/inter/inter'
+      // });
+      wx.clearStorageSync();
+    }else{
+      wx.setStorageSync('LOGIN_TOKEN', 'LOGIN_TOKEN');
+    }
   },
   getUserInfo:function(cb){
     var that = this;

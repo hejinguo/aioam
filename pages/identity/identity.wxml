@@ -38,7 +38,7 @@
             </view>
         </view>
         <view class="weui-btn-area">
-            <button class="weui-btn" type="primary" bindtap="showTopTips">绑定账号</button>
+            <button class="weui-btn" type="primary" bindtap="bindAccountTap">绑定账号</button>
         </view>
     </view>
 </view>
