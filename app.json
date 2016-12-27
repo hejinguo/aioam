@@ -1,9 +1,9 @@
 {
   "pages":[
     "pages/identity/identity",
+    "pages/main/main",
     "pages/inter/inter",
-    "pages/index/index",
-    "pages/logs/logs"
+    "pages/base/more"
   ],
   "window":{
     "backgroundTextStyle":"light",

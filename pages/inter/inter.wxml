@@ -1,2 +1,36 @@
-<!--pages/inter/inter.wxml-->
-<text>pages/inter/inter.wxml</text>
+<view class="page">
+    <view class="page__bd">
+        <view class="weui-tab">
+            <view class="weui-navbar">
+                <block wx:for-items="{{tabs}}" wx:key="{{index}}">
+                    <view id="{{index}}" class="weui-navbar__item {{activeIndex == index ? 'weui-bar__item_on' : ''}}" bindtap="tabClick">
+                        <view class="weui-navbar__title">{{item}}</view>
+                    </view>
+                </block>
+                <view class="weui-navbar__slider" style="left: {{sliderLeft}}px; transform: translateX({{sliderOffset}}px); -webkit-transform: translateX({{sliderOffset}}px);"></view>
+            </view>
+            <view class="weui-tab__panel">
+                <view class="weui-tab__content">
+                    <scroll-view scroll-y="true" style="height:{{scrollViewHeight}}px;" bindscrolltolower="bindScrollLower">
+
+                    
+                        <view class="weui-panel weui-panel_access">
+                            <view class="weui-panel__bd">
+                                <block wx:for-items="{{rows}}" wx:key="{{index}}">
+                                    <view class="weui-media-box weui-media-box_text">
+                                        <view class="weui-media-box__title weui-media-box__title_in-text">{{item.tabname}}</view>
+                                        <view class="weui-media-box__desc">
+                                            {{item.interCode}} {{item.interTypeName}} {{item.triggerTime ? item.triggerTime:""}}
+                                        </view>
+                                    </view>
+                                </block>
+                            </view>
+                        </view>
+
+
+                    </scroll-view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

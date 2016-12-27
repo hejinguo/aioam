@@ -6,14 +6,15 @@ App({
     console.log("loginToken="+loginToken);
     if(loginToken){
       wx.redirectTo({
-        url: 'pages/inter/inter'
+        url: 'pages/main/main'
       });
       // wx.navigateTo({
       //   url: 'pages/inter/inter'
       // });
-      wx.clearStorageSync();
+      // wx.clearStorageSync();
     }else{
-      
+      // 开发临时入口
+      wx.setStorageSync('LOGIN_TOKEN', '1336E9D2-6639-4C26-AABE-5B5B37C66B46');
     }
   },
   getUserInfo:function(cb){

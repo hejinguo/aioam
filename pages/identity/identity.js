@@ -71,7 +71,7 @@ Page({
           // loginToken:"A3BEBF8E-B94E-459A-8D88-CE06092168AC"
           wx.setStorageSync('LOGIN_TOKEN', data.info.loginToken);
           wx.redirectTo({
-              url: '../inter/inter'
+              url: '../main/main'
           });
         }else{
           wx.showModal({
