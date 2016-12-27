@@ -13,7 +13,7 @@ App({
       // });
       wx.clearStorageSync();
     }else{
-      wx.setStorageSync('LOGIN_TOKEN', 'LOGIN_TOKEN');
+      
     }
   },
   getUserInfo:function(cb){
