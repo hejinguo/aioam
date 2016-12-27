@@ -37,11 +37,6 @@ Page({
             content: '验证码发送至'+data.info+',请查收.',
             showCancel: false
           });
-        }else{
-          wx.showModal({
-            content: '错误代码:'+data.code,
-            showCancel: false
-          });
         }
       });
     }else{
@@ -72,11 +67,6 @@ Page({
           wx.setStorageSync('LOGIN_TOKEN', data.info.loginToken);
           wx.redirectTo({
               url: '../main/main'
-          });
-        }else{
-          wx.showModal({
-            content: '错误代码:'+data.code,
-            showCancel: false
           });
         }
       });

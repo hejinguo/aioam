@@ -13,7 +13,6 @@
                 <view class="weui-tab__content">
                     <scroll-view scroll-y="true" style="height:{{scrollViewHeight}}px;" bindscrolltolower="bindScrollLower">
 
-                    
                         <view class="weui-panel weui-panel_access">
                             <view class="weui-panel__bd">
                                 <block wx:for-items="{{rows}}" wx:key="{{index}}">
@@ -26,7 +25,6 @@
                                 </block>
                             </view>
                         </view>
-
 
                     </scroll-view>
                 </view>
