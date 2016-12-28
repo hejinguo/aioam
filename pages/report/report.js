@@ -1,7 +1,7 @@
 var util = require('../../utils/util.js');
 var sliderWidth = 96; // 需要设置slider的宽度，用于计算中间位置
 var app = getApp();
-var paramData = null;
+var paramData = null;//列表分页组件参数
 
 Page({
   data:{

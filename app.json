@@ -3,13 +3,16 @@
     "pages/identity/identity",
     "pages/main/main",
     "pages/inter/inter",
+    "pages/task/task",
     "pages/report/report",
     "pages/base/more"
   ],
   "window":{
-    "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#fff",
+    "navigationBarBackgroundColor": "#353535",
+    "navigationBarTextStyle":"white",
     "navigationBarTitleText": "运维助手",
-    "navigationBarTextStyle":"black"
+    "backgroundColor":"#FFFFFF",
+    "backgroundTextStyle":"dark",
+    "enablePullDownRefresh":false
   }
 }
