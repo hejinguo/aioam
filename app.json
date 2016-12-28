@@ -3,6 +3,7 @@
     "pages/identity/identity",
     "pages/main/main",
     "pages/inter/inter",
+    "pages/report/report",
     "pages/base/more"
   ],
   "window":{

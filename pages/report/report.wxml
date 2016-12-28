@@ -17,13 +17,14 @@
                                 <block wx:for-items="{{rows}}" wx:key="{{index}}">
                                     <view class="weui-media-box weui-media-box_text">
                                         <view class="weui-media-box__title weui-media-box__title_in-text">
-                                            <view>{{item.tabname}}</view>
+                                            <view>{{item.taskName}}</view>
+                                            <view>{{item.tableName}}</view>
                                         </view>
                                         <view class="weui-media-box__desc">
                                             <view class="weui-flex">
-                                                <view class="weui-flex__item">{{item.interCode}}</view>
-                                                <view class="weui-flex__item">{{item.interTypeName}}</view>
-                                                <view>{{item.triggerTime ? item.triggerTime:""}}</view>
+                                                <view class="weui-flex__item">{{item.taskCode}}</view>
+                                                <view class="weui-flex__item">{{item.tabRowNum}}</view>
+                                                <view class="weui-flex__item">{{item.ifTabExit==1?'已生成':'未生成'}}</view>
                                             </view>
                                         </view>
                                     </view>

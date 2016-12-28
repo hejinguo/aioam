@@ -5,7 +5,7 @@ Page({
     grids: [
       {title:'接口加载',image:'../../images/inter-load.png',url:'../inter/inter'},
       {title:'任务执行',image:'../../images/task-exec.png',url:'../base/more'},
-      {title:'报表加载',image:'../../images/report-load.png',url:'../base/more'},
+      {title:'报表加载',image:'../../images/report-load.png',url:'../report/report'},
       {title:'自助服务',image:'../../images/service-search.png',url:'../base/more'},
       {title:'我的文件',image:'../../images/file-list.png',url:'../base/more'},
       {title:'主机监控',image:'../../images/host-monitor.png',url:'../base/more'},

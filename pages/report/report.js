@@ -1,11 +1,11 @@
 var util = require('../../utils/util.js');
 var sliderWidth = 96; // 需要设置slider的宽度，用于计算中间位置
 var app = getApp();
-var paramData=null;
+var paramData = null;
 
 Page({
   data:{
-    tabs: ["已加载接口明细", "未加载接口明细"],
+    tabs: ["已生成报表明细", "未生成报表明细"],
     activeIndex: "0",
     sliderOffset: 0,
     sliderLeft: 0,
@@ -28,7 +28,7 @@ Page({
         loadMoreFlag:'loading'
       });
       var that = this;
-      util.ajax(this.data.activeIndex == 0 ? "inter/getLoadded":"inter/getUnLoadded",paramData,function(data){
+      util.ajax(this.data.activeIndex == 0 ? "report/getCheck/1":"report/getCheck/0",paramData,function(data){
         console.log(data);
         if(data.state){
           paramData.total=data.info.total;
@@ -59,7 +59,7 @@ Page({
   },
   onLoad:function(options){
     // 页面初始化 options为页面跳转所带来的参数
-    console.log("inter onload");
+    console.log("report onload");
     this.setData({
       sliderLeft:(app.globalData.systemInfo.windowWidth / this.data.tabs.length - sliderWidth) / 2,
       scrollViewHeight:app.globalData.systemInfo.windowHeight-50//其中50为tab的高度
@@ -67,13 +67,12 @@ Page({
   },
   onReady:function(){
     // 页面渲染完成
-    console.log("inter onReady");
+    console.log("report onReady");
     paramData={opTime:'20161227',pageNo:1,pageSize:10,total:10};//total需要大于0才能保证首次加载
     this.loadMore();
   },
   onShow:function(){
     // 页面显示
-    // console.log(getCurrentPages());
   },
   onHide:function(){
     // 页面隐藏
