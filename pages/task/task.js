@@ -76,42 +76,39 @@ Page({
     // 页面关闭
   },
   listItemClick: function (e) {
-    // e.currentTarget.dataset.taskCode
-    // e.currentTarget.dataset.taskName
-    // e.currentTarget.dataset.taskSeqNo
     console.log(e);
-    console.log("this.data.activeIndex=" + this.data.activeIndex);
     var that = this;
     if (this.data.activeIndex > 0) {//当按住的不是正在执行的任务记录
       wx.showActionSheet({
         itemList: ['查看任务节点', '重新执行任务'],
         success: function (res) {
           if (!res.cancel) {
-            console.log(res.tapIndex);
-            if (res.tapIndex == 1) {
+            if (res.tapIndex == 0) {//查看任务节点
+              that.showTaskNode(e.currentTarget.dataset.taskSeqNo, e.currentTarget.dataset.taskName);
+            }else if(res.tapIndex == 1){//重新执行任务
               that.reRunTask(e.currentTarget.dataset.taskCode, e.currentTarget.dataset.taskName);
-            }else if(res.tapIndex == 0){
-              console.log('新窗口查看任务节点情况');
             }
           }
         }
       });
     }else{
-      console.log('新窗口查看任务节点情况');
+      this.showTaskNode(e.currentTarget.dataset.taskSeqNo, e.currentTarget.dataset.taskName);
     }
   },
   reRunTask: function (taskCode, taskName) {
     wx.showModal({
-      // title: '提醒',
       content: "您确定要重新执行任务（" + taskName + "）吗?",
       success: function (res) {
         console.log(res);
         if (res.confirm) {
-          console.log('用户点击主操作')
+          console.log('用户点击主操作');
         } else {
-          console.log('用户点击辅助操作')
+          console.log('用户点击辅助操作');
         }
       }
     });
+  },
+  showTaskNode: function(taskSeqNo, taskName){
+    console.log('新窗口查看任务节点情况'+taskSeqNo+'  - '+taskName);
   }
 })
