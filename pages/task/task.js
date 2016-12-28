@@ -74,5 +74,12 @@ Page({
   },
   onUnload:function(){
     // 页面关闭
+  },
+  listItemClick:function(e){
+    // e.currentTarget.dataset.taskCode
+    // e.currentTarget.dataset.taskName
+    // e.currentTarget.dataset.taskSeqNo
+    console.log(e);
+
   }
 })

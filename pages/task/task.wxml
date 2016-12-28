@@ -15,7 +15,7 @@
                         <view class="weui-panel weui-panel_access">
                             <view class="weui-panel__bd">
                                 <block wx:for-items="{{rows}}" wx:key="{{index}}">
-                                    <view class="weui-media-box weui-media-box_text">
+                                    <view class="weui-media-box weui-media-box_text" data-task-seq-no="{{item.taskSeqNo}}" data-task-code="{{item.taskCode}}" data-task-name="{{item.taskName}}" hover="{{true}}" hover-class="weui-cell_active" bindtap="listItemClick">
                                         <view class="weui-media-box__title weui-media-box__title_in-text">
                                             <view>{{item.taskName}}</view>
                                         </view>
