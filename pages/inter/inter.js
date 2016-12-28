@@ -1,7 +1,7 @@
 var util = require('../../utils/util.js');
 var sliderWidth = 96; // 需要设置slider的宽度，用于计算中间位置
 var app = getApp();
-var param_data={opTime:'20161226',pageNo:1,pageSize:10,total:10};//total需要大于0才能保证首次加载
+var paramData={opTime:'20161226',pageNo:1,pageSize:10,total:10};//total需要大于0才能保证首次加载
 
 Page({
   data:{
@@ -17,17 +17,17 @@ Page({
           activeIndex: e.currentTarget.id,
           rows:[]
       });
-      param_data.pageNo=1;
-      param_data.total=10;
+      paramData.pageNo=1;
+      paramData.total=10;
       this.loadMore();
   },
   loadMore:function(){
-    if(param_data.total > (param_data.pageNo-1)*param_data.pageSize){
+    if(paramData.total > (paramData.pageNo-1)*paramData.pageSize){
       this.setData({
         loadMoreFlag:'loading'
       });
       var that = this;
-      util.ajax(this.data.activeIndex == 0 ? "inter/getLoadded":"inter/getUnLoadded",param_data,function(data){
+      util.ajax(this.data.activeIndex == 0 ? "inter/getLoadded":"inter/getUnLoadded",paramData,function(data){
         console.log(data);
         if(data.state){
           var targetRows = that.data.rows || [];
@@ -36,12 +36,12 @@ Page({
             rows:targetRows,
             loadMoreFlag:data.info.total > 0 ? 'waitload' : 'loaded'
           });
-          param_data.total=data.info.total;
-          var hopeRows = param_data.pageNo++*param_data.pageSize;// param_data.pageNo++;
-          hopeRows = hopeRows > param_data.total ? param_data.total : hopeRows;
-          console.log('已加载'+hopeRows+'条,共计'+param_data.total+'条');
+          paramData.total=data.info.total;
+          var hopeRows = paramData.pageNo++*paramData.pageSize;// paramData.pageNo++;
+          hopeRows = hopeRows > paramData.total ? paramData.total : hopeRows;
+          console.log('已加载'+hopeRows+'条,共计'+paramData.total+'条');
           // wx.showToast({
-          //   title: '已加载'+hopeRows+'条,共计'+param_data.total+'条',
+          //   title: '已加载'+hopeRows+'条,共计'+paramData.total+'条',
           //   icon: 'success',
           //   duration: 2000
           // });
@@ -66,6 +66,7 @@ Page({
   },
   onReady:function(){
     // 页面渲染完成
+    this.loadMore();
   },
   onShow:function(){
     // 页面显示
