@@ -4,6 +4,7 @@
     "pages/main/main",
     "pages/inter/inter",
     "pages/task/task",
+    "pages/task/node",
     "pages/report/report",
     "pages/base/more"
   ],

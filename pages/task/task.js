@@ -54,7 +54,7 @@ Page({
   },
   onLoad: function (options) {
     // 页面初始化 options为页面跳转所带来的参数
-    console.log("report onload");
+    console.log("task onload");
     this.setData({
       sliderLeft: (app.globalData.systemInfo.windowWidth / this.data.tabs.length - sliderWidth) / 2,
       scrollViewHeight: app.globalData.systemInfo.windowHeight - 50//其中50为tab的高度
@@ -62,8 +62,8 @@ Page({
   },
   onReady: function () {
     // 页面渲染完成
-    console.log("report onReady");
-    paramData = { opTime: '20161227', pageNo: 1, pageSize: 10, total: 10 };//total需要大于0才能保证首次加载
+    console.log("task onReady");
+    paramData = { opTime: '20161228', pageNo: 1, pageSize: 10, total: 10 };//total需要大于0才能保证首次加载
     this.loadMore();
   },
   onShow: function () {
@@ -85,30 +85,45 @@ Page({
           if (!res.cancel) {
             if (res.tapIndex == 0) {//查看任务节点
               that.showTaskNode(e.currentTarget.dataset.taskSeqNo, e.currentTarget.dataset.taskName);
-            }else if(res.tapIndex == 1){//重新执行任务
+            } else if (res.tapIndex == 1) {//重新执行任务
               that.reRunTask(e.currentTarget.dataset.taskCode, e.currentTarget.dataset.taskName);
             }
           }
         }
       });
-    }else{
+    } else {
       this.showTaskNode(e.currentTarget.dataset.taskSeqNo, e.currentTarget.dataset.taskName);
     }
   },
   reRunTask: function (taskCode, taskName) {
+    var that = this;
     wx.showModal({
       content: "您确定要重新执行任务（" + taskName + "）吗?",
       success: function (res) {
         console.log(res);
         if (res.confirm) {
-          console.log('用户点击主操作');
+          util.ajax("task/runTask", { opTime: paramData.opTime, taskCode: taskCode }, function (data) {
+            if (data.state) {
+              that.setData({
+                loadMoreFlag: 'waitload',
+                rows: []
+              });
+              paramData.pageNo = 1;
+              paramData.total = 10;
+              that.loadMore();
+            }
+          });
+          // console.log('用户重新执行任务.');
         } else {
-          console.log('用户点击辅助操作');
+          console.log('用户取消重新执行任务操作.');
         }
       }
     });
   },
-  showTaskNode: function(taskSeqNo, taskName){
-    console.log('新窗口查看任务节点情况'+taskSeqNo+'  - '+taskName);
+  showTaskNode: function (taskSeqNo, taskName) {
+    wx.navigateTo({
+      url: '../task/node?taskSeqNo='+taskSeqNo+'&taskName='+taskName
+    });
+    // console.log('新窗口查看任务节点情况' + taskSeqNo + '  - ' + taskName);
   }
 })
