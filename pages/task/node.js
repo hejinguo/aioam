@@ -38,6 +38,7 @@ Page({
   onLoad: function (options) {
     console.log("node onload");
     this.setData({// 页面初始化 options为页面跳转所带来的参数
+      opTime: options.opTime,
       taskSeqNo: options.taskSeqNo,
       taskName: options.taskName
     });
@@ -46,7 +47,7 @@ Page({
     wx.setNavigationBarTitle({
       title: this.data.taskName
     });
-    paramData = { opTime: '20161228', taskSeqNo: this.data.taskSeqNo, pageNo: 1, pageSize: 10, total: 10 };//total需要大于0才能保证首次加载
+    paramData = { opTime: this.data.opTime, taskSeqNo: this.data.taskSeqNo, pageNo: 1, pageSize: 10, total: 10 };//total需要大于0才能保证首次加载
     this.loadMore();
   },
   onShow: function () {
@@ -68,7 +69,7 @@ Page({
             if (res.tapIndex == 0) {//查看程序步骤
               that.showNodeStep(e.currentTarget.dataset.procName);
             } else if (res.tapIndex == 1) {//DPT程序日志
-              that.showDptLog(e.currentTarget.dataset.procName+'_'+e.currentTarget.dataset.dlogPath+'.log');
+              that.showDptLog(e.currentTarget.dataset.procName + '_' + e.currentTarget.dataset.dlogPath + '.log');
             }
           }
         }
@@ -81,9 +82,15 @@ Page({
     }
   },
   showNodeStep: function (procName) {
-    console.log(procName);
+    // console.log(procName);
+    wx.navigateTo({
+      url: '../task/step?opTime=' + paramData.opTime + '&procName=' + procName
+    });
   },
   showDptLog: function (dlogFile) {
-    console.log(dlogFile);
+    // console.log(dlogFile);
+    wx.navigateTo({
+      url: '../task/dptlog?dlogFile=' + dlogFile
+    });
   }
 })

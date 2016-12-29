@@ -122,7 +122,7 @@ Page({
   },
   showTaskNode: function (taskSeqNo, taskName) {
     wx.navigateTo({
-      url: '../task/node?taskSeqNo='+taskSeqNo+'&taskName='+taskName
+      url: '../task/node?opTime='+paramData.opTime+'&taskSeqNo='+taskSeqNo+'&taskName='+taskName
     });
     // console.log('新窗口查看任务节点情况' + taskSeqNo + '  - ' + taskName);
   }

@@ -5,6 +5,8 @@
     "pages/inter/inter",
     "pages/task/task",
     "pages/task/node",
+    "pages/task/step",
+    "pages/task/dptlog",
     "pages/report/report",
     "pages/base/more"
   ],

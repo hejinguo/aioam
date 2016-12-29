@@ -38,8 +38,9 @@ function ajax(url, params, onSuccess, onError, onComplete){
 			if(!res.data.state && res.data.code == "JAVA_EXCEPTION"){
       	console.log('服务端请求处理发生问题,请联系系统管理员.');
 			}else if(!res.data.state && res.data.code == "NOT_LOGINED"){
-				wx.clearStorageSync();
 				console.log('您尚未登陆或账号在其他终端上登陆导致本设备踢出.');
+				wx.clearStorageSync();
+				wx.navigateBack(getCurrentPages().length);
 			}else if(!res.data.state && res.data.code == "CHARACTER_WRONGFUL"){
 				console.log('您提交的数据中含有非法字符,请调整后继续.');
 			}else if(!res.data.state){
