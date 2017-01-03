@@ -8,6 +8,7 @@
     "pages/task/step",
     "pages/task/dptlog",
     "pages/report/report",
+    "pages/self-service/self-service",
     "pages/base/more"
   ],
   "window":{
