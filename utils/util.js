@@ -40,7 +40,7 @@ function ajax(url, params, onSuccess, onError, onComplete){
 			}else if(!res.data.state && res.data.code == "NOT_LOGINED"){
 				console.log('您尚未登陆或账号在其他终端上登陆导致本设备踢出.');
 				wx.clearStorageSync();
-				wx.navigateBack(getCurrentPages().length);
+				wx.navigateBack(getCurrentPages().length+100);//返回首页
 			}else if(!res.data.state && res.data.code == "CHARACTER_WRONGFUL"){
 				console.log('您提交的数据中含有非法字符,请调整后继续.');
 			}else if(!res.data.state){

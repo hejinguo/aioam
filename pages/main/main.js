@@ -22,6 +22,12 @@ Page({
   },
   onShow:function(){
     // 页面显示
+    var loginToken = wx.getStorageSync('LOGIN_TOKEN') || '';
+    if (!loginToken) {
+      wx.redirectTo({
+        url: '../identity/identity'
+      });
+    }
   },
   onHide:function(){
     // 页面隐藏

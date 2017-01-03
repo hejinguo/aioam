@@ -1,2 +1,34 @@
-<!--pages/task/step.wxml-->
-<text>pages/task/step.wxml</text>
+<view class="page">
+    <view class="page__bd">
+        <scroll-view scroll-y="true" style="height:100%;" lower-threshold="25" bindscrolltolower="bindScrollLower">
+            <view class="weui-panel weui-panel_access">
+                <view class="weui-panel__bd">
+                    <block wx:for-items="{{rows}}" wx:key="{{index}}">
+                        <view class="weui-media-box weui-media-box_text">
+                            <view class="weui-media-box__title weui-media-box__title_in-text">
+                                <view>{{item.remark}}</view>
+                            </view>
+                            <view class="weui-media-box__desc">
+                                <view class="weui-flex">
+                                    <view class="weui-flex__item">{{item.stepResultName}}</view>
+                                    <view class="step-desc-text-padding">{{item.startTime}}</view>
+                                    <view class="step-desc-text-padding">{{item.endTime}}</view>
+                                </view>
+                            </view>
+                        </view>
+                    </block>
+                    <view class="weui-loadmore" wx:if="{{loadMoreFlag=='loading'}}">
+                        <view class="weui-loading"></view>
+                        <view class="weui-loadmore__tips">正在加载</view>
+                    </view>
+                    <view class="weui-loadmore weui-loadmore_line" wx:elif="{{loadMoreFlag=='loaded'}}">
+                        <view class="weui-loadmore__tips weui-loadmore__tips_in-line">暂无更多数据</view>
+                    </view>
+                    <view class="weui-loadmore weui-loadmore_line weui-loadmore_dot" wx:elif="{{loadMoreFlag=='waitload'}}">
+                        <view class="weui-loadmore__tips weui-loadmore__tips_in-line weui-loadmore__tips_in-dot"></view>
+                    </view>
+                </view>
+            </view>
+        </scroll-view>
+    </view>
+</view>

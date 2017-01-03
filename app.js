@@ -14,9 +14,8 @@ App({
       //  wx.clearStorageSync();
     } else {
       // 开发临时入口
-      wx.setStorageSync('LOGIN_TOKEN', '1336E9D2-6639-4C26-AABE-5B5B37C66B46');
+      // wx.setStorageSync('LOGIN_TOKEN', '1336E9D2-6639-4C26-AABE-5B5B37C66B46');
     }
-
     var that=this;
     wx.getSystemInfo({
       success: function (res) {

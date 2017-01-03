@@ -1,6 +1,7 @@
 var util = require('../../utils/util.js');
-//获取应用实例
-var app = getApp();
+var app = getApp();//获取应用实例
+var intObj = {int:null,time:60};//倒计时对象
+
 Page({
   data:{
       topTips:{
@@ -12,7 +13,8 @@ Page({
         loginCode:'',
         loginPassword:'',
         lastLoginMark:''
-      }
+      },
+      sendMarkText:'获取验证码'
   },
   bindLoginCodeInput:function(e){
     this.setData({
@@ -30,30 +32,51 @@ Page({
     });
   },
   bindSendMarkTap: function(){
-    if(this.data.pageInfo.loginCode){
-      util.ajax('base/getMark',{loginCode:this.data.pageInfo.loginCode},function(data){
-        if(data.state){
-          wx.showModal({
-            content: '验证码发送至'+data.info+',请查收.',
-            showCancel: false
-          });
-        }
-      });
+    if(!intObj.int){//没有正在倒计时的过程时
+      if(this.data.pageInfo.loginCode){
+        var that = this;
+        var thisTime = intObj.time;
+        intObj.int = setInterval(function(){
+          if(thisTime > 0){
+            that.setData({
+              sendMarkText:thisTime+'秒'
+            });
+            thisTime--;
+          }else{
+            clearInterval(intObj.int);
+            intObj.int = null;
+            that.setData({
+              sendMarkText:'获取验证码'
+            });
+          }
+        },1000);
+
+        util.ajax('base/getMark',{loginCode:this.data.pageInfo.loginCode},function(data){
+          if(data.state){
+            wx.showModal({
+              content: '验证码发送至'+data.info+',请查收.',
+              showCancel: false
+            });
+          }
+        });
+      }else{
+        var that = this;
+        this.setData({
+          topTips:{
+            showTopTips: true,
+            topTipsText:'您没有填写工号信息'
+          }
+        });
+        setTimeout(function(){
+            that.setData({
+              topTips:{
+                showTopTips: false
+              }
+            });
+        }, 3000);
+      }
     }else{
-      var that = this;
-      this.setData({
-        topTips:{
-          showTopTips: true,
-          topTipsText:'您没有填写工号信息'
-        }
-      });
-      setTimeout(function(){
-          that.setData({
-            topTips:{
-              showTopTips: false
-            }
-          });
-      }, 3000);
+      console.log('wait setinterval');
     }
   },
   bindLoginAccountTap: function() {
