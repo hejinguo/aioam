@@ -10,3 +10,15 @@ page,
     padding-top: 0px;
     text-align: left;
 }
+
+
+.weui-navbar__title{
+    max-width:10em;
+}
+.navbar__title__bage{
+    color:#FFFFFF;
+    background: #888888;
+    border-radius:20%;
+    margin-left: 1px;
+    padding:0px 2px;
+}

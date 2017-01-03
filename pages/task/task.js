@@ -9,6 +9,9 @@ Page({
     activeIndex: "0",
     sliderOffset: 0,
     sliderLeft: 0,
+    executeNum:0,//正在执行
+    successNum:0,//执行成功
+    failureNum:0,//执行失败
     loadMoreFlag: 'waitload'//waitload,loading,loaded
   },
   tabClick: function (e) {
@@ -38,6 +41,9 @@ Page({
           targetRows.push(...data.info.rows);
           that.setData({
             rows: targetRows,
+            executeNum:data.info.executeNum,
+            successNum:data.info.successNum,
+            failureNum:data.info.failureNum,
             loadMoreFlag: paramData.total > hopeRowNum ? 'waitload' : 'loaded'//paramData.total > 0 && 
           });
           console.log('已加载' + hopeRowNum + '条,共计' + paramData.total + '条');
@@ -63,7 +69,7 @@ Page({
   onReady: function () {
     // 页面渲染完成
     console.log("task onReady");
-    paramData = { opTime: '20161228', pageNo: 1, pageSize: 10, total: 10 };//total需要大于0才能保证首次加载
+    paramData = { opTime: util.getOpTime(), pageNo: 1, pageSize: 10, total: 10 };//total需要大于0才能保证首次加载
     this.loadMore();
   },
   onShow: function () {
@@ -81,6 +87,7 @@ Page({
     if (this.data.activeIndex > 0) {//当按住的不是正在执行的任务记录
       wx.showActionSheet({
         itemList: ['查看任务节点', '重新执行任务'],
+        // itemColor: '#000',
         success: function (res) {
           if (!res.cancel) {
             if (res.tapIndex == 0) {//查看任务节点

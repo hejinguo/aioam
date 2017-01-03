@@ -1,6 +1,9 @@
 //app.js
 App({
   onLaunch: function () {
+    // 开发临时入口
+    wx.setStorageSync('LOGIN_TOKEN', '265D4C59-4F20-46FE-8C9A-F50190105AA2');
+
     var loginToken = wx.getStorageSync('LOGIN_TOKEN') || '';
     console.log('app onLaunch');
     console.log("loginToken=" + loginToken);
@@ -12,9 +15,6 @@ App({
       //   url: 'pages/inter/inter'
       // });
       //  wx.clearStorageSync();
-    } else {
-      // 开发临时入口
-      // wx.setStorageSync('LOGIN_TOKEN', '1336E9D2-6639-4C26-AABE-5B5B37C66B46');
     }
     var that=this;
     wx.getSystemInfo({

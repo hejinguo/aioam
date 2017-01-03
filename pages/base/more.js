@@ -1,4 +1,5 @@
-// pages/base/more.js
+var util = require('../../utils/util.js');
+
 Page({
   data:{
     opTime:'20170103'
@@ -8,6 +9,9 @@ Page({
   },
   onReady:function(){
     // 页面渲染完成
+    this.setData({
+      opTime:util.getOpTime()
+    });
   },
   onShow:function(){
     // 页面显示
