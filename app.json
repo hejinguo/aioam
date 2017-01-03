@@ -9,6 +9,7 @@
     "pages/task/dptlog",
     "pages/report/report",
     "pages/self-service/self-service",
+    "pages/remote-file/remote-file",
     "pages/base/more"
   ],
   "window":{
