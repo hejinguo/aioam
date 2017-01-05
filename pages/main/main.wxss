@@ -1,1 +1,4 @@
-/* pages/main/main.wxss */
+.weui-search-bar{
+    border-top: 0px;
+    border-bottom: 0px;
+}

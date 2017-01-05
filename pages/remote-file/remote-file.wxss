@@ -10,3 +10,8 @@ page,
     padding-top: 0px;
     text-align: left;
 }
+
+textarea{
+    width: 100%;
+    margin-top: 10px;
+}

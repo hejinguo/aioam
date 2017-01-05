@@ -1,19 +1,42 @@
-// pages/remote-file/remote-file.js
+var util = require('../../utils/util.js');
+
 Page({
-  data:{},
-  onLoad:function(options){
+  data: {
+    rows: []
+  },
+  loadMore: function () {
+    var that = this;
+    util.ajax("file/list", {}, function (data) {
+      console.log(data);
+      if (data.state) {
+        that.setData({
+          rows: data.info
+        });
+      }
+    });
+  },
+  onLoad: function (options) {
     // 页面初始化 options为页面跳转所带来的参数
   },
-  onReady:function(){
-    // 页面渲染完成
+  onReady: function () {// 页面渲染完成
+    this.loadMore();
   },
-  onShow:function(){
+  onShow: function () {
     // 页面显示
   },
-  onHide:function(){
+  onHide: function () {
     // 页面隐藏
   },
-  onUnload:function(){
+  onUnload: function () {
     // 页面关闭
+  },
+  listItemClick: function (e) {
+    var content = "";
+    if (!e.currentTarget.dataset.directory) {
+      content = "https://218.205.252.12:10029/aioam/file/get?name="+e.currentTarget.dataset.name+"&loginToken="+wx.getStorageSync('LOGIN_TOKEN');
+    }
+    this.setData({
+        textarea:content
+      });
   }
 })
