@@ -65,8 +65,14 @@ Page({
     console.log(event);
     this.setData({
       "footerContent.opTimevalue": event.detail.value,
-      "footerContent.opTimeShow": event.detail.value.replace(/-/g, "")
+      "footerContent.opTimeShow": event.detail.value.replace(/-/g, ""),
+      loadMoreFlag: 'waitload',
+      rows: []
     });
+    paramData.opTime = this.data.footerContent.opTimeShow;
+    paramData.pageNo = 1;
+    paramData.total = 10;
+    this.loadMore();
   },
   onLoad: function (options) {
     // 页面初始化 options为页面跳转所带来的参数
@@ -79,12 +85,12 @@ Page({
   onReady: function () {
     // 页面渲染完成
     console.log("report onReady");
-    paramData = { opTime: util.getOpTime(null,''), pageNo: 1, pageSize: 10, total: 10 };//total需要大于0才能保证首次加载
+    paramData = { opTime: util.getOpTime(null, ''), pageNo: 1, pageSize: 10, total: 10 };//total需要大于0才能保证首次加载
     this.setData({
       footerContent: {
         opTimevalue: util.getOpTime(null, '-'),
         opTimeMax: util.getOpTime(null, '-'),
-        opTimeShow: util.getOpTime(null, '')
+        opTimeShow: paramData.opTime
       }
     });
 

@@ -28,6 +28,6 @@
     </view>
 
     <view class="weui-footer weui-footer_fixed-bottom">
-        <view class="weui-footer__text">Copyright © 2010-2016 ESOP</view>
+        <view class="weui-footer__text">Copyright © 2010-2016 esop</view>
     </view>
 </view>
