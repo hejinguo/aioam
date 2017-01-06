@@ -22,3 +22,6 @@ page,
     margin-left: 1px;
     padding:0px 2px;
 }
+.weui-footer_fixed-bottom{
+    bottom:0em;
+}

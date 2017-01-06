@@ -48,5 +48,15 @@
                 </view>
             </view>
         </view>
+
+        <view class="weui-footer weui-footer_fixed-bottom">
+            <view class="weui-footer__text">
+                <picker mode="date" value="{{footerContent.opTimevalue}}" start="2015-09-01" end="{{footerContent.opTimeMax}}" bindchange="changeOpTime">
+                    <view class="picker">
+                        选择账期: {{footerContent.opTimeShow}}
+                    </view>
+                </picker>
+            </view>
+        </view>
     </view>
 </view>

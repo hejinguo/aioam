@@ -61,18 +61,32 @@ Page({
   bindScrollLower: function () {
     this.loadMore();
   },
+  changeOpTime: function (event) {
+    console.log(event);
+    this.setData({
+      "footerContent.opTimevalue": event.detail.value,
+      "footerContent.opTimeShow": event.detail.value.replace(/-/g, "")
+    });
+  },
   onLoad: function (options) {
     // 页面初始化 options为页面跳转所带来的参数
     console.log("inter onload");
     this.setData({
       sliderLeft: (app.globalData.systemInfo.windowWidth / this.data.tabs.length - sliderWidth) / 2,
-      scrollViewHeight: app.globalData.systemInfo.windowHeight - 50//其中50为tab的高度
+      scrollViewHeight: app.globalData.systemInfo.windowHeight - 50 - 19//其中50为tab的高度,19位账期选择控件高度
     });
   },
   onReady: function () {
     // 页面渲染完成
     console.log("inter onReady");
-    paramData = { opTime: util.getOpTime(), pageNo: 1, pageSize: 10, total: 10 };//total需要大于0才能保证首次加载
+    paramData = { opTime: util.getOpTime(null,''), pageNo: 1, pageSize: 10, total: 10 };//total需要大于0才能保证首次加载
+    this.setData({
+      footerContent: {
+        opTimevalue: util.getOpTime(null, '-'),
+        opTimeMax: util.getOpTime(null, '-'),
+        opTimeShow: util.getOpTime(null, '')
+      }
+    });
     this.loadMore();
   },
   onShow: function () {

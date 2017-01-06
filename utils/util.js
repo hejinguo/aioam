@@ -1,17 +1,37 @@
-// function formatNumber(n) {
-//   n = n.toString()
-//   return n[1] ? n : '0' + n
-// }
+function formatNumber(n) {
+  n = n.toString()
+  return n[1] ? n : '0' + n
+}
 
-// function formatTime(date) {
-//   var year = date.getFullYear()
-//   var month = date.getMonth() + 1
-//   var day = date.getDate()
-//   var hour = date.getHours()
-//   var minute = date.getMinutes()
-//   var second = date.getSeconds();
-//   return [year, month, day].map(formatNumber).join('/') + ' ' + [hour, minute, second].map(formatNumber).join(':')
-// }
+/**
+ * 获取默认要加载的opTime
+ * date,-,:
+ */
+function getOpTime() {
+	console.log("arguments.length="+arguments.length);
+	var date = new Date((new Date() / 1000 - 86400) * 1000);//86400为1天的秒数;
+	if(arguments.length > 0 && arguments[0]){
+		date = arguments[0];
+	}
+	var year = date.getFullYear()
+	var month = date.getMonth() + 1
+	var day = date.getDate()
+	var hour = date.getHours()
+	var minute = date.getMinutes()
+	var second = date.getSeconds();
+	if(arguments.length == 3){
+		return [year, month, day].map(formatNumber).join(arguments[1]) + ' ' + [hour, minute, second].map(formatNumber).join(arguments[2]);
+	}else if(arguments.length == 2){
+		return [year, month, day].map(formatNumber).join(arguments[1]);
+	}else{
+		return [year, month, day].map(formatNumber).join('-');
+	}
+	// var date = date ? date : new Date((new Date() / 1000 - 86400) * 1000);//86400为1天的秒数
+	var year = date.getFullYear()
+	var month = date.getMonth() + 1
+	var day = date.getDate()
+	return year + ((month > 9 ? '' : '0') + month) + ((day > 9 ? '' : '0') + day);
+}
 
 /**
  * Ajax请求封装
@@ -62,17 +82,6 @@ function ajax(url, params, onSuccess, onError, onComplete) {
 	});
 };
 
-
-/**
- * 获取默认要加载的opTime
- */
-function getOpTime(date) {
-	var date = date ? date : new Date((new Date() / 1000 - 86400) * 1000);//86400为1天的秒数
-	var year = date.getFullYear()
-	var month = date.getMonth() + 1
-	var day = date.getDate()
-	return year + ((month > 9 ? '' : '0') + month) + ((day > 9 ? '' : '0') + day);
-}
 
 module.exports = {
 	// formatTime: formatTime,
