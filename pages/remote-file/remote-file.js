@@ -6,6 +6,7 @@ Page({
   },
   loadMore: function () {
     var that = this;
+    wx.showNavigationBarLoading();//在当前页面显示导航条加载动画
     util.ajax("file/list", {}, function (data) {
       console.log(data);
       if (data.state) {
@@ -13,6 +14,10 @@ Page({
           rows: data.info
         });
       }
+    }, function () {
+
+    }, function () {
+      wx.hideNavigationBarLoading();//隐藏导航条加载动画
     });
   },
   onLoad: function (options) {
@@ -33,10 +38,10 @@ Page({
   listItemClick: function (e) {
     var content = "";
     if (!e.currentTarget.dataset.directory) {
-      content = "https://218.205.252.12:10029/aioam/file/get?name="+e.currentTarget.dataset.name+"&loginToken="+wx.getStorageSync('LOGIN_TOKEN');
+      content = "https://218.205.252.12:10029/aioam/file/get?name=" + e.currentTarget.dataset.name + "&loginToken=" + wx.getStorageSync('LOGIN_TOKEN');
     }
     this.setData({
-        textarea:content
-      });
+      textarea: content
+    });
   }
 })

@@ -2,7 +2,7 @@
 App({
   onLaunch: function () {
     // 开发临时入口
-    wx.setStorageSync('LOGIN_TOKEN', 'DC4840A8-5F05-464D-85E9-6584866C772C');
+    wx.setStorageSync('LOGIN_TOKEN', 'E52272D1-6B86-4A63-90F6-C233D3BCD929');
 
     var loginToken = wx.getStorageSync('LOGIN_TOKEN') || '';
     console.log('app onLaunch');
