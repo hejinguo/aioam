@@ -1,5 +1,8 @@
 <view class="page">
     <view class="page__bd">
+            <view>
+                <textarea value="{{textarea}}" maxlength="255" auto-height="{{true}}"/>
+            </view>
             <view class="weui-panel weui-panel_access">
                 <view class="weui-panel__bd">
                     <block wx:for-items="{{rows}}" wx:key="{{index}}">
@@ -16,9 +19,6 @@
                         </view>
                     </block>
                 </view>
-            </view>
-            <view>
-                <textarea value="{{textarea}}" maxlength="255" auto-height="{{true}}"/>
             </view>
     </view>
 </view>
